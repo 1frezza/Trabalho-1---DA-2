@@ -16,9 +16,9 @@ function carregarUsuarios() {
 function salvarUsuarios() {
     try {
       fs.writeFileSync('./src/db/users.json', JSON.stringify(usersDB, null, 2));
-      return "Salvou"
+      return "Usuário salvo!"
     } catch (err) {
-      return "Não salvou";
+      return "Erro ao salvar!";
     }
   }
 
@@ -71,7 +71,7 @@ function salvarUsuarios() {
 
 // GET "/users"
 router.get('/', (req, res) =>{
-    console.log("getroute");
+    console.log("Método GET.");
     usersDB = carregarUsuarios();
     res.json(usersDB);
 })
@@ -122,7 +122,7 @@ router.get('/:id', (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Users'
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
  *         description: O usuário foi criado com sucesso
@@ -212,7 +212,7 @@ router.put('/:id', (req, res) => {
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/user'
+ *              $ref: '#/components/schemas/User'
  *       404:
  *         description: Usuário não encontrado
  */
@@ -220,7 +220,7 @@ router.put('/:id', (req, res) => {
 // DELETE "/users/1"
 router.delete('/:id', (req, res) => {
     const id = req.params.id
-    usersDB = loadStudents();
+    usersDB = carregarUsuarios();
     const currentUser = usersDB.find((user) => user.id === id )
     const currentIndex = usersDB.findIndex((user) => user.id === id )
     if(!currentUser) return res.status(404).json({
