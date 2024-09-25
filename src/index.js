@@ -18,13 +18,13 @@ const options = {
 	definition: {
 		openapi: "3.0.0",
 		info: {
-			title: "API Exemplo",
+			title: "API de Gestão de Ensino Especial",
 			version: "1.0.0",
 			description: `API para demonstração de Documentação API via Swagger.  
             
             ### TD 01    
             Disciplina: DAII 2024.02 Turma 01  
-            Equipe: André, Josiane, Noah e Mikaela   
+            Equipe: Caio Hobold, Nicolas Frezza, Gustavo Pessi, Jhulia Fermo, Kauan Rosso, Kauam Sant'ana
 			`,
       license: {
         name: 'Licenciado para DAII',
