@@ -31,6 +31,11 @@ function salvarUsuarios() {
  *       required:
  *         - id
  *         - nome
+ *         - email
+ *         - user
+ *         - pwd
+ *         - level
+ *         - status
  *       properties:
  *         id:
  *           type: string
@@ -38,9 +43,30 @@ function salvarUsuarios() {
  *         nome:
  *           type: string
  *           description: Nome do Usuário
+ *         email:
+ *           type: string
+ *           description: E-mail do Usuário
+ *         user:
+ *           type: string
+ *           description: Nome de identificação do Usuário
+ *         pwd:
+ *           type: string
+ *           description: PWD do Usuário
+ *         level:
+ *           type: string
+ *           description: Perfil de acesso do Usuário
+ *         status:
+ *           type: string
+ *           description: Status atual do Usuário
   *       example:
  *         id: afr0b6d0-a69b-4938-b116-f2e8e0d08542
  *         nome: Caio Hobold
+ *         email: caio.hobold@nextfit.com.br
+ *         user: caio.hobold
+ *         pwd: afr0b6d0-a69b-4938-b116-f2e8e0d08542
+ *         level: admin
+ *         status: on
+ * 
  */
 
  /**
@@ -134,8 +160,10 @@ router.get('/:id', (req, res) => {
 
 // POST "/users" BODY { "nome": "Eragon"}
 router.post('/', (req, res) => {
+    const idGerado = uuidv4();
     const novoUsuario = {
-        id: uuidv4(),
+        id: idGerado,
+        pwd: idGerado,
         ...req.body
     }
     console.log(novoUsuario);
