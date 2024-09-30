@@ -1,0 +1,114 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Gestão de Ensino Especial API",
+        "version": "1.0.0",
+        "description": "API para gerenciar professores, alunos, eventos, e mais."
+    },
+    "paths": {
+        "/api/teachers": {
+            "get": {
+                "summary": "Listar todos os professores",
+                "responses": {
+                    "200": {
+                        "description": "Lista de professores",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Teacher"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar um novo professor",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Teacher"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Professor criado com sucesso"
+                    }
+                }
+            }
+        },
+        "/api/students": {
+            "get": {
+                "summary": "Listar todos os alunos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de alunos",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Student"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar um novo aluno",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Student"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Aluno criado com sucesso"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Teacher": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "example": "João Silva"
+                },
+                "subject": {
+                    "type": "string",
+                    "example": "Matemática"
+                }
+            }
+        },
+        "Student": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Maria Oliveira"
+                },
+                "class": {
+                    "type": "string",
+                    "example": "5º Ano"
+                }
+            }
+        }
+    }
+}
