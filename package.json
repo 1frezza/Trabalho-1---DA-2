@@ -1,16 +1,16 @@
 {
-  "name": "api-aluno",
+  "name": "api-prof-saude",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js"
   },
-  "author": "André Faria Ruaro",
+  "author": "Kauan Flavio rosso",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^10.0.0"
