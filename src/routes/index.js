@@ -1,8 +1,8 @@
-const express = require('express')
-const router = express.Router()
-const usersRoutes = require('./usersRoutes')
+const express = require('express');
+const router = express.Router();
+const appointmentsRoutes = require('./appointmentsRoutes');
 
-router.use(express.json())
-router.use('/users', usersRoutes)
+router.use(express.json());
+router.use('/appointments', appointmentsRoutes);  // Ajuste o prefixo aqui
 
-module.exports = router
+module.exports = router;

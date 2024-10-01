@@ -23,7 +23,7 @@ const options = {
 			description: `API para demonstração de Documentação API via Swagger.  
             
             ### TD 01    
-            Disciplina: DAII 2024.02 Turma 01  
+            Disciplina: DAII 2024.02 Turma 02  
             Equipe: Caio Hobold, Nicolas Frezza, Gustavo Pessi, Jhulia Fermo, Kauan Rosso, Kauam Sant'ana
 			`,
       license: {
