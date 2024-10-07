@@ -6,6 +6,7 @@ const teachersRoute = require('./teachersRoutes');
 const studentsRoutes = require('./studentsRouter');
 const profsaudeRoutes = require('./prof-saude');
 const eventsRoutes = require('./eventsRoutes');
+const appointmentsRoutes = require('./appointmentsRoutes');
 
 // swagger
 const swaggerUi = require('swagger-ui-express');
@@ -17,6 +18,7 @@ router.use('/teachers', teachersRoute);  // rota de professores
 router.use('/students', studentsRoutes);
 router.use('/prof-saude', profsaudeRoutes);
 router.use('/events', eventsRoutes);
+router.use('/appointments', appointmentsRoutes);
 
 // rota da documentação swagger
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
