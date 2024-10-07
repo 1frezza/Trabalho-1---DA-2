@@ -26,7 +26,7 @@ function salvarAgendamentos() {
  * @swagger
  * components:
  *   schemas:
- *     Appointment:
+ *     Agendamento em saúde:
  *       type: object
  *       required:
  *         - id
@@ -67,10 +67,8 @@ function salvarAgendamentos() {
  /**
   * @swagger
   * tags:
-  *   name: Appointments
-  *   description: 
-  *     API de Agendamento em Saúde
-  *     **por Kauam Sant`Ana**
+  *   name: Agendamento em saúde
+  *   description: API para gerenciamento de agendamentos em saúde. Criado por Kauam Sant`Ana
   */
 
  /**
@@ -78,7 +76,7 @@ function salvarAgendamentos() {
  * /appointments:
  *   get:
  *     summary: Retorna uma lista de todos os agendamentos
- *     tags: [Appointments]
+ *     tags: [Agendamento em saúde]
  *     responses:
  *       200:
  *         description: A lista de agendamentos
@@ -87,7 +85,7 @@ function salvarAgendamentos() {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Appointment'
+ *                 $ref: '#/components/schemas/Agendamento em saúde'
  */
 
 // GET "/appointments"
@@ -102,7 +100,7 @@ router.get('/', (req, res) =>{
  * /appointments/{id}:
  *   get:
  *     summary: Retorna um agendamento pelo ID
- *     tags: [Appointments]
+ *     tags: [Agendamento em saúde]
  *     parameters:
  *       - in: path
  *         name: id
@@ -116,7 +114,7 @@ router.get('/', (req, res) =>{
  *         contents:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Appointment'
+ *               $ref: '#/components/schemas/Agendamento em saúde'
  *       404:
  *         description: Agendamento não encontrado
  */
@@ -137,20 +135,20 @@ router.get('/:id', (req, res) => {
  * /appointments:
  *   post:
  *     summary: Cria um novo agendamento
- *     tags: [Appointments]
+ *     tags: [Agendamento em saúde]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Appointment'
+ *             $ref: '#/components/schemas/Agendamento em saúde'
  *     responses:
  *       200:
  *         description: O agendamento foi criado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Appointment'
+ *               $ref: '#/components/schemas/Agendamento em saúde'
  */
 
 // POST "/appointments" BODY { "nome": "Eragon" }
@@ -174,7 +172,7 @@ router.post('/', (req, res) => {
  * /appointments/{id}:
  *  put:
  *    summary: Atualiza um agendamento pelo ID
- *    tags: [Appointments]
+ *    tags: [Agendamento em saúde]
  *    parameters:
  *      - in: path
  *        name: id
@@ -187,14 +185,14 @@ router.post('/', (req, res) => {
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Appointment'
+ *            $ref: '#/components/schemas/Agendamento em saúde'
  *    responses:
  *      200:
  *        description: O agendamento foi atualizado com sucesso
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Appointment'
+ *              $ref: '#/components/schemas/Agendamento em saúde'
  *      404:
  *        description: Agendamento não encontrado
  */
@@ -221,7 +219,7 @@ router.put('/:id', (req, res) => {
  * /appointments/{id}:
  *   delete:
  *     summary: Remove um agendamento pelo ID
- *     tags: [Appointments]
+ *     tags: [Agendamento em saúde]
  *     parameters:
  *       - in: path
  *         name: id
@@ -235,7 +233,7 @@ router.put('/:id', (req, res) => {
  *         content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Appointment'
+ *              $ref: '#/components/schemas/Agendamento em saúde'
  *       404:
  *         description: Agendamento não encontrado
  */
