@@ -1,24 +1,18 @@
 const express = require('express');
-const app = express(); 
+const router = express.Router();  
 
-const usersRoutes = require('./routes/usersRoutes'); 
-const teachersRoute = require('./routes/teachersRoutes'); 
+const usersRoutes = require('./usersRoutes'); 
+const teachersRoute = require('./teachersRoutes');
 
 // swagger
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger/swagger.json'); // Verifique o caminho para o arquivo swagger.json
+const swaggerDocument = require('../swagger/swagger.json'); 
 
 
-app.use(express.json());  
-
-
-app.use('/api/users', usersRoutes);       // rota de usuários
-app.use('/api/teachers', teachersRoute);  // rota de professores
+router.use('/users', usersRoutes);       // rota de usuários
+router.use('/teachers', teachersRoute);  // rota de professores
 
 // rota da documentação swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+module.exports = router;  
