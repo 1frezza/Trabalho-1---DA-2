@@ -1,19 +1,18 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const cors = require("cors");
 
 app.use(cors());
+app.use(express.json()); 
 
-//swagger
+const eventsRoutes = require('./routes/eventsRoutes');
+
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
-
-const routes = require('./routes')
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
-//swagger
 const options = {
 	definition: {
 		openapi: "3.0.0",
@@ -24,8 +23,7 @@ const options = {
             
             ### TD 01    
             Disciplina: DAII 2024.02 Turma 01  
-            Equipe: Caio Hobold, Nicolas Frezza, Gustavo Pessi, Jhulia Fermo, Kauan Rosso, Kauam Sant'ana
-			`,
+            Equipe: Caio Hobold, Nicolas Frezza, Gustavo Pessi, Jhulia Fermo, Kauan Rosso, Kauam Sant'ana`,
       license: {
         name: 'Licenciado para DAII',
       },
@@ -45,12 +43,10 @@ const options = {
 
 const specs = swaggerJsDoc(options);
 
-app.use('/api', routes)
-//swagger
+app.use('/api/events', eventsRoutes);
+
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
-
-
 app.listen(port, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
-})
+  console.log(`Server running at http://${hostname}:${port}/`);
+});

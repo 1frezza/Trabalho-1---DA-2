@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const studentsRoutes = require('./studentsRoutes')
+const eventsRoutes = require('./eventsRoutes')
 
 router.use(express.json())
-router.use('/students', studentsRoutes)
+router.use('/events', eventsRoutes)
 
 module.exports = router
