@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
-let teachersDB = carregarProfessores();
+// Carregar base de dados de professores
+var TeachersDB = carregarProfessores();
 
-// Função para carregar professores do arquivo
 function carregarProfessores() {
     try {
         return JSON.parse(fs.readFileSync('./src/db/teachers.json', 'utf8'));
@@ -13,10 +14,9 @@ function carregarProfessores() {
     }
 }
 
-// Função para salvar professores no arquivo
 function salvarProfessores() {
     try {
-        fs.writeFileSync('./src/db/teachers.json', JSON.stringify(teachersDB, null, 2));
+        fs.writeFileSync('./src/db/teachers.json', JSON.stringify(TeachersDB, null, 2));
         return "Professores salvos!";
     } catch (err) {
         return "Erro ao salvar!";
@@ -32,27 +32,42 @@ function salvarProfessores() {
  *       required:
  *         - id
  *         - name
- *         - matéria
+ *         - subject
+ *         - phone_number
+ *         - email
+ *         - status
  *       properties:
  *         id:
- *           type: integer
- *           description: O ID é gerado automaticamente e é incremental.
+ *           type: string
+ *           description: O ID é gerado automaticamente.
  *         name:
  *           type: string
- *           description: Nome do professor
- *         matéria:
+ *           description: Nome do professor.
+ *         subject:
  *           type: string
- *           description: Matéria que o professor leciona
+ *           description: Matéria lecionada pelo professor.
+ *         phone_number:
+ *           type: string
+ *           description: Número de telefone do professor.
+ *         email:
+ *           type: string
+ *           description: E-mail do professor.
+ *         status:
+ *           type: string
+ *           description: Status do professor (ativo ou inativo).
  *       example:
- *         id: 1
- *         name: Nicolas
- *         matéria: Programação
+ *         id: "a7dcce7283c60a23c98a1d857ba1f7ca6db8271b"
+ *         name: "Professor Xavier"
+ *         subject: "Ciências"
+ *         phone_number: "48 9999 1234"
+ *         email: "xavier@escola.com"
+ *         status: "ativo"
  */
 
 /**
  * @swagger
  * tags:
- *   name: Professores
+ *   name: Teachers
  *   description: API para gerenciamento de professores
  */
 
@@ -61,7 +76,7 @@ function salvarProfessores() {
  * /teachers:
  *   post:
  *     summary: Cria um novo professor
- *     tags: [Professores]
+ *     tags: [Teachers]
  *     requestBody:
  *       required: true
  *       content:
@@ -72,12 +87,21 @@ function salvarProfessores() {
  *               name:
  *                 type: string
  *                 description: Nome do professor
- *               matéria:
+ *               subject:
  *                 type: string
  *                 description: Matéria que o professor leciona
+ *               phone_number:
+ *                 type: string
+ *                 description: Número de telefone do professor
+ *               email:
+ *                 type: string
+ *                 description: E-mail do professor
+ *               status:
+ *                 type: string
+ *                 description: Status do professor
  *             required:
  *               - name
- *               - matéria
+ *               - subject
  *     responses:
  *       201:
  *         description: Professor criado com sucesso
@@ -88,72 +112,43 @@ function salvarProfessores() {
  *         examples:
  *           application/json:
  *             value:
- *               id: 1
- *               name: Caio Hobold
- *               matéria: Matemática
+ *               id: "a7dcce7283c60a23c98a1d857ba1f7ca6db8271b"
+ *               name: "Professor Xavier"
+ *               subject: "Ciências"
+ *               phone_number: "48 9999 1234"
+ *               email: "xavier@escola.com"
+ *               status: "ativo"
  */
 router.post('/', (req, res) => {
-    // Verifica se req.body está definido
-    if (!req.body) {
-        return res.status(400).json({ erro: "O corpo da requisição está indefinido." });
+    const { name, subject, phone_number, email, status } = req.body;
+
+    if (!name || !subject || !phone_number || !email || !status) {
+        return res.status(400).json({ erro: "Todos os campos são obrigatórios!" });
     }
 
-    const { name, matéria } = req.body; // Extraindo name e matéria do corpo da requisição
-    if (!name || !matéria) {
-        return res.status(400).json({ erro: "Nome e matéria são obrigatórios!" });
-    }
-
-    // Gerar ID incremental
-    const nextId = teachersDB.length > 0 ? Math.max(...teachersDB.map(t => t.id)) + 1 : 1;
-
-    const novoProfessor = {
-        id: nextId, // O ID é gerado automaticamente
+    const newTeacher = {
+        id: uuidv4(), // Gerar um ID único
         name,
-        matéria
+        subject,
+        phone_number,
+        email,
+        status
     };
 
-    teachersDB.push(novoProfessor);
-    let resultado = salvarProfessores();
-    console.log(resultado);
-    return res.status(201).json(novoProfessor); // Retorna o novo professor criado
-});
-
-
-router.post('/', (req, res) => {
-    // Verifica se req.body está definido
-    if (!req.body) {
-        return res.status(400).json({ erro: "O corpo da requisição está indefinido." });
-    }
-
-    const { name, matéria } = req.body; // Extraindo name e matéria do corpo da requisição
-    if (!name || !matéria) {
-        return res.status(400).json({ erro: "Nome e matéria são obrigatórios!" });
-    }
-
-    // Gerar ID incremental
-    const nextId = teachersDB.length > 0 ? Math.max(...teachersDB.map(t => t.id)) + 1 : 1;
-
-    const novoProfessor = {
-        id: nextId,
-        name,
-        matéria
-    };
-
-    teachersDB.push(novoProfessor);
-    let resultado = salvarProfessores();
-    console.log(resultado);
-    return res.status(201).json(novoProfessor);
+    TeachersDB.push(newTeacher);
+    salvarProfessores();
+    return res.status(201).json(newTeacher);
 });
 
 /**
  * @swagger
  * /teachers:
  *   get:
- *     summary: Retorna todos os professores
- *     tags: [Professores]
+ *     summary: Retorna uma lista de todos os professores
+ *     tags: [Teachers]
  *     responses:
  *       200:
- *         description: Lista de professores
+ *         description: A lista de professores
  *         content:
  *           application/json:
  *             schema:
@@ -163,8 +158,8 @@ router.post('/', (req, res) => {
  */
 router.get('/', (req, res) => {
     console.log("Método GET.");
-    teachersDB = carregarProfessores();
-    res.json(teachersDB);
+    TeachersDB = carregarProfessores();
+    res.json(TeachersDB);
 });
 
 /**
@@ -172,12 +167,12 @@ router.get('/', (req, res) => {
  * /teachers/{id}:
  *   get:
  *     summary: Retorna um professor pelo ID
- *     tags: [Professores]
+ *     tags: [Teachers]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID do professor
  *     responses:
@@ -191,24 +186,24 @@ router.get('/', (req, res) => {
  *         description: Professor não encontrado
  */
 router.get('/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    teachersDB = carregarProfessores();
-    const professor = teachersDB.find(t => t.id === id);
-    if (!professor) return res.status(404).json({ erro: "Professor não encontrado." });
-    res.json(professor);
+    const id = req.params.id;
+    TeachersDB = carregarProfessores();
+    const teacher = TeachersDB.find(t => t.id === id);
+    if (!teacher) return res.status(404).json({ erro: "Professor não encontrado!" });
+    res.json(teacher);
 });
 
 /**
  * @swagger
  * /teachers/{id}:
  *   put:
- *     summary: Atualiza um professor
- *     tags: [Professores]
+ *     summary: Atualiza os dados de um professor
+ *     tags: [Teachers]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID do professor
  *     requestBody:
@@ -228,17 +223,27 @@ router.get('/:id', (req, res) => {
  *         description: Professor não encontrado
  */
 router.put('/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const { name, matéria } = req.body;
+    const id = req.params.id;
+    const { name, subject, phone_number, email, status } = req.body;
 
-    teachersDB = carregarProfessores();
-    const currentIndex = teachersDB.findIndex(t => t.id === id);
-    if (currentIndex === -1) return res.status(404).json({ erro: "Professor não encontrado." });
+    TeachersDB = carregarProfessores();
+    const currentIndex = TeachersDB.findIndex(teacher => teacher.id === id);
+    if (currentIndex === -1) {
+        return res.status(404).json({ erro: "Professor não encontrado!" });
+    }
 
-    teachersDB[currentIndex] = { id, name, matéria };
-    let resultado = salvarProfessores();
-    console.log(resultado);
-    return res.json(teachersDB[currentIndex]);
+    const updatedTeacher = {
+        id,
+        name: name || TeachersDB[currentIndex].name,
+        subject: subject || TeachersDB[currentIndex].subject,
+        phone_number: phone_number || TeachersDB[currentIndex].phone_number,
+        email: email || TeachersDB[currentIndex].email,
+        status: status || TeachersDB[currentIndex].status
+    };
+
+    TeachersDB[currentIndex] = updatedTeacher;
+    salvarProfessores();
+    return res.json(updatedTeacher);
 });
 
 /**
@@ -246,29 +251,30 @@ router.put('/:id', (req, res) => {
  * /teachers/{id}:
  *   delete:
  *     summary: Remove um professor
- *     tags: [Professores]
+ *     tags: [Teachers]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: ID do professor
  *     responses:
  *       204:
- *         description: Professor removido
+ *         description: Professor removido com sucesso
  *       404:
  *         description: Professor não encontrado
  */
 router.delete('/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    teachersDB = carregarProfessores();
-    const currentIndex = teachersDB.findIndex(t => t.id === id);
-    if (currentIndex === -1) return res.status(404).json({ erro: "Professor não encontrado." });
+    const id = req.params.id;
+    TeachersDB = carregarProfessores();
+    const currentIndex = TeachersDB.findIndex(teacher => teacher.id === id);
+    if (currentIndex === -1) {
+        return res.status(404).json({ erro: "Professor não encontrado!" });
+    }
 
-    teachersDB.splice(currentIndex, 1);
-    let resultado = salvarProfessores();
-    console.log(resultado);
+    TeachersDB.splice(currentIndex, 1);
+    salvarProfessores();
     res.status(204).send();
 });
 
