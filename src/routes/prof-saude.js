@@ -28,7 +28,7 @@ function saveProfissionais(profissionaisDB) {
  * @swagger
  * components:
  *   schemas:
- *     Profissional:
+ *     Profissionais da Saúde:
  *       type: object
  *       required:
  *         - id
@@ -40,7 +40,7 @@ function saveProfissionais(profissionaisDB) {
  *       properties:
  *         id:
  *           type: string
- *           description: O id é gerado automaticamente pelo cadastro do profissional.
+ *           description: O id é gerado automaticamente
  *         name:
  *           type: string
  *           description: Nome do Profissional.
@@ -66,18 +66,18 @@ function saveProfissionais(profissionaisDB) {
  */
 
 /**
- * @swagger
+ * @swagger 
  * tags:
- *   name: Profissionais
- *   description: API de Controle de Profissionais de Saúde. Criado por Kauan Flávio Rosso.
+ *   name: Profissionais da Saúde
+ *   description: API para gerenciamento de profissionais da saúde. Criado por Kauan Flávio Rosso.
  */
 
 /**
  * @swagger
  * /prof-saude:
  *   get:
- *     summary: Retorna uma lista de todos os profissionais de saúde Por Kauan Flavio Rosso
- *     tags: [Profissionais]
+ *     summary: Retorna uma lista de todos os profissionais de saúde 
+ *     tags: [Profissionais da Saúde]
  *     description: Este endpoint retorna uma lista de todos os profissionais de saúde. Criado por Kauan Flávio Rosso.
  *     responses:
  *       200:
@@ -87,7 +87,7 @@ function saveProfissionais(profissionaisDB) {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Profissional'
+ *                 $ref: '#/components/schemas/Profissionais da Saúde'
  */
 
 // GET "/prof-saude"
@@ -100,8 +100,8 @@ router.get('/', (req, res) => {
  * @swagger
  * /prof-saude/{id}:
  *   get:
- *     summary: Retorna um profissional de saúde pelo ID Por Kauan Flavio Rosso
- *     tags: [Profissionais]
+ *     summary: Retorna um profissional de saúde pelo ID 
+ *     tags: [Profissionais da Saúde]
  *     description: Este endpoint retorna um profissional de saúde pelo ID. Criado por Kauan Flávio Rosso.
  *     parameters:
  *       - in: path
@@ -116,7 +116,7 @@ router.get('/', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais da Saúde'
  *       404:
  *         description: Profissional não encontrado
  */
@@ -134,22 +134,22 @@ router.get('/:id', (req, res) => {
  * @swagger
  * /prof-saude:
  *   post:
- *     summary: Cria um novo profissional de saúde Por Kauan Flavio Rosso
- *     tags: [Profissionais]
+ *     summary: Cria um novo profissional de saúde 
+ *     tags: [Profissionais da Saúde]
  *     description: Este endpoint cria um novo profissional de saúde. Criado por Kauan Flávio Rosso.
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Profissional'
+ *             $ref: '#/components/schemas/Profissionais da Saúde'
  *     responses:
  *       200:
  *         description: O profissional foi criado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais da Saúde'
  */
 
 // POST "/prof-saude"
@@ -168,8 +168,8 @@ router.post('/', (req, res) => {
  * @swagger
  * /prof-saude/{id}:
  *   put:
- *     summary: Atualiza um profissional de saúde pelo ID Por Kauan Flavio Rosso
- *     tags: [Profissionais]
+ *     summary: Atualiza um profissional de saúde pelo ID 
+ *     tags: [Profissionais da Saúde]
  *     description: Este endpoint atualiza um profissional de saúde pelo ID. Criado por Kauan Flávio Rosso.
  *     parameters:
  *       - in: path
@@ -183,14 +183,14 @@ router.post('/', (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Profissional'
+ *             $ref: '#/components/schemas/Profissionais da Saúde'
  *     responses:
  *       200:
  *         description: O profissional de saúde foi atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais da Saúde'
  *       404:
  *         description: Profissional não encontrado
  */
@@ -214,8 +214,8 @@ router.put('/:id', (req, res) => {
  * @swagger
  * /prof-saude/{id}:
  *   delete:
- *     summary: Remove um profissional de saúde pelo ID Por Kauan Flavio Rosso
- *     tags: [Profissionais]
+ *     summary: Remove um profissional de saúde pelo ID 
+ *     tags: [Profissionais da Saúde]
  *     description: Este endpoint remove um profissional de saúde pelo ID. Criado por Kauan Flávio Rosso.
  *     parameters:
  *       - in: path
@@ -230,7 +230,7 @@ router.put('/:id', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais da Saúde'
  *       404:
  *         description: Profissional não encontrado
  */

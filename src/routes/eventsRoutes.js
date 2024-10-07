@@ -28,7 +28,7 @@ function saveEvents() {
  * @swagger
  * components:
  *   schemas:
- *     Event:
+ *     Eventos:
  *       type: object
  *       required:
  *         - id
@@ -38,7 +38,7 @@ function saveEvents() {
  *       properties:
  *         id:
  *           type: string
- *           description: O id é gerado automaticamente pelo cadastro do evento
+ *           description: O id é gerado automaticamente
  *         description:
  *           type: string
  *           description: Descrição do evento
@@ -59,10 +59,8 @@ function saveEvents() {
 /**
  * @swagger
  * tags:
- *   name: Events
- *   description:
- *     API de Controle de Eventos
- *     **Por Gustavo Pessi**
+ *   name: Eventos
+ *   description: API para gerenciamento de eventos. Criado por Gustavo Borges Pessi
  */
 
 /**
@@ -70,7 +68,7 @@ function saveEvents() {
  * /events:
  *   get:
  *     summary: Retorna uma lista de todos os eventos
- *     tags: [Events]
+ *     tags: [Eventos]
  *     responses:
  *       200:
  *         description: A lista de eventos
@@ -79,7 +77,7 @@ function saveEvents() {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Event'
+ *                 $ref: '#/components/schemas/Eventos'
  */
 
 // GET "/events"
@@ -94,7 +92,7 @@ router.get('/', (req, res) => {
  * /events/{id}:
  *   get:
  *     summary: Retorna um evento pelo ID
- *     tags: [Events]
+ *     tags: [Eventos]
  *     parameters:
  *       - in: path
  *         name: id
@@ -108,7 +106,7 @@ router.get('/', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Event'
+ *               $ref: '#/components/schemas/Eventos'
  *       404:
  *         description: Evento não encontrado
  */
@@ -129,20 +127,20 @@ router.get('/:id', (req, res) => {
  * /events:
  *   post:
  *     summary: Cria um novo evento
- *     tags: [Events]
+ *     tags: [Eventos]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Event'
+ *             $ref: '#/components/schemas/Eventos'
  *     responses:
  *       200:
  *         description: O evento foi criado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Event'
+ *               $ref: '#/components/schemas/Eventos'
  */
 
 // POST "/events" BODY { "description": "Novo Evento" }
@@ -164,7 +162,7 @@ router.post('/', (req, res) => {
  * /events/{id}:
  *   put:
  *     summary: Atualiza um evento pelo ID
- *     tags: [Events]
+ *     tags: [Eventos]
  *     parameters:
  *       - in: path
  *         name: id
@@ -177,14 +175,14 @@ router.post('/', (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Event'
+ *             $ref: '#/components/schemas/Eventos'
  *     responses:
  *       200:
  *         description: O evento foi atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Event'
+ *               $ref: '#/components/schemas/Eventos'
  *       404:
  *         description: Evento não encontrado
  */
@@ -211,7 +209,7 @@ router.put('/:id', (req, res) => {
  * /events/{id}:
  *   delete:
  *     summary: Remove um evento pelo ID
- *     tags: [Events]
+ *     tags: [Eventos]
  *     parameters:
  *       - in: path
  *         name: id
@@ -225,7 +223,7 @@ router.put('/:id', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Event'
+ *               $ref: '#/components/schemas/Eventos'
  *       404:
  *         description: Evento não encontrado
  */

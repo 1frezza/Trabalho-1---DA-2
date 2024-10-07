@@ -26,7 +26,7 @@ const options = {
             
             ### TD 01    
             Disciplina: DAII 2024.02 Turma 01  
-            Equipe: Caio Hobold, Nicolas Frezza, Gustavo Pessi, Jhulia Fermo, Kauan Rosso, Kauam Sant'ana`,
+            Equipe: Caio Hobold, Gustavo Pessi, Jhulia Fermo Fascin, Kauam Sant'ana, Kauan Flavio rosso e Nicolas Martins Frezza`,
       license: {
         name: 'Licenciado para DAII',
       },

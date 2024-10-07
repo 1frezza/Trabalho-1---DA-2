@@ -25,9 +25,16 @@ function salvarEstudantes() {
 
 /**
  * @swagger
+ * tags:
+ *   name: Estudantes
+ *   description: API para gerenciamento de estudantes. Criado por Jhulia Fermo Fascin
+ */
+
+/**
+ * @swagger
  * components:
  *   schemas:
- *     Student:
+ *     Estudante:
  *       type: object
  *       required:
  *         - id
@@ -74,7 +81,7 @@ function salvarEstudantes() {
  * /students:
  *   get:
  *     summary: Retorna uma lista de todos os estudantes
- *     tags: [Students]
+ *     tags: [Estudantes]
  *     responses:
  *       200:
  *         description: A lista de estudantes
@@ -83,7 +90,7 @@ function salvarEstudantes() {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Student'
+ *                 $ref: '#/components/schemas/Estudante'
  */
 router.get('/', (req, res) => {
     console.log("Método GET.");
@@ -96,7 +103,7 @@ router.get('/', (req, res) => {
  * /students/{id}:
  *   get:
  *     summary: Retorna um estudante pelo ID
- *     tags: [Students]
+ *     tags: [Estudantes]
  *     parameters:
  *       - in: path
  *         name: id
@@ -110,7 +117,7 @@ router.get('/', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Student'
+ *               $ref: '#/components/schemas/Estudante'
  *       404:
  *         description: Estudante não encontrado
  */
@@ -129,7 +136,7 @@ router.get('/:id', (req, res) => {
  * /students:
  *   post:
  *     summary: Cria um novo estudante
- *     tags: [Students]
+ *     tags: [Estudantes]
  *     requestBody:
  *       required: true
  *       content:
@@ -163,7 +170,7 @@ router.get('/:id', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Student'
+ *               $ref: '#/components/schemas/Estudante'
  */
 router.post('/', (req, res) => {
     const { name, age, parents, phone_number, special_needs } = req.body;
@@ -195,7 +202,7 @@ router.post('/', (req, res) => {
  * /students/{id}:
  *   put:
  *     summary: Atualiza os dados de um estudante
- *     tags: [Students]
+ *     tags: [Estudantes]
  *     parameters:
  *       - in: path
  *         name: id
@@ -208,14 +215,14 @@ router.post('/', (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Student'
+ *             $ref: '#/components/schemas/Estudante'
  *     responses:
  *       200:
  *         description: Estudante atualizado
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Student'
+ *               $ref: '#/components/schemas/Estudante'
  *       404:
  *         description: Estudante não encontrado
  */
@@ -246,7 +253,7 @@ router.put('/:id', (req, res) => {
  * /students/{id}:
  *   delete:
  *     summary: Remove um estudante
- *     tags: [Students]
+ *     tags: [Estudantes]
  *     parameters:
  *       - in: path
  *         name: id

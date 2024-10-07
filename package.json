@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/index.js"
   },
-  "author": "Kauan Flavio rosso",
+  "author": "Caio Hobold, Gustavo Pessi, Jhulia Fermo Fascin, Kauam Sant'ana, Kauan Flavio rosso e Nicolas Martins Frezza",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

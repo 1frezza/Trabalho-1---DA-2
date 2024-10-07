@@ -27,7 +27,7 @@ function salvarProfessores() {
  * @swagger
  * components:
  *   schemas:
- *     Teacher:
+ *     Professores:
  *       type: object
  *       required:
  *         - id
@@ -67,8 +67,8 @@ function salvarProfessores() {
 /**
  * @swagger
  * tags:
- *   name: Teachers
- *   description: API para gerenciamento de professores
+ *   name: Professores
+ *   description: API para gerenciamento de professores. Criado por Nicolas Martins Frezza
  */
 
 /**
@@ -76,7 +76,7 @@ function salvarProfessores() {
  * /teachers:
  *   post:
  *     summary: Cria um novo professor
- *     tags: [Teachers]
+ *     tags: [Professores]
  *     requestBody:
  *       required: true
  *       content:
@@ -108,7 +108,7 @@ function salvarProfessores() {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Teacher'
+ *               $ref: '#/components/schemas/Professores'
  *         examples:
  *           application/json:
  *             value:
@@ -145,7 +145,7 @@ router.post('/', (req, res) => {
  * /teachers:
  *   get:
  *     summary: Retorna uma lista de todos os professores
- *     tags: [Teachers]
+ *     tags: [Professores]
  *     responses:
  *       200:
  *         description: A lista de professores
@@ -154,7 +154,7 @@ router.post('/', (req, res) => {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Teacher'
+ *                 $ref: '#/components/schemas/Professores'
  */
 router.get('/', (req, res) => {
     console.log("Método GET.");
@@ -167,7 +167,7 @@ router.get('/', (req, res) => {
  * /teachers/{id}:
  *   get:
  *     summary: Retorna um professor pelo ID
- *     tags: [Teachers]
+ *     tags: [Professores]
  *     parameters:
  *       - in: path
  *         name: id
@@ -181,7 +181,7 @@ router.get('/', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Teacher'
+ *               $ref: '#/components/schemas/Professores'
  *       404:
  *         description: Professor não encontrado
  */
@@ -198,7 +198,7 @@ router.get('/:id', (req, res) => {
  * /teachers/{id}:
  *   put:
  *     summary: Atualiza os dados de um professor
- *     tags: [Teachers]
+ *     tags: [Professores]
  *     parameters:
  *       - in: path
  *         name: id
@@ -211,14 +211,14 @@ router.get('/:id', (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Teacher'
+ *             $ref: '#/components/schemas/Professores'
  *     responses:
  *       200:
  *         description: Professor atualizado
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Teacher'
+ *               $ref: '#/components/schemas/Professores'
  *       404:
  *         description: Professor não encontrado
  */
@@ -251,7 +251,7 @@ router.put('/:id', (req, res) => {
  * /teachers/{id}:
  *   delete:
  *     summary: Remove um professor
- *     tags: [Teachers]
+ *     tags: [Professores]
  *     parameters:
  *       - in: path
  *         name: id
