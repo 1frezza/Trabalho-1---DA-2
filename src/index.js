@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const express = require('express');
+const app = express();
 const cors = require("cors");
 
 app.use(express.json());
@@ -27,21 +29,21 @@ const options = {
             ### TD 01    
             Disciplina: DAII 2024.02 Turma 01  
             Equipe: Caio Hobold, Nicolas Frezza, Gustavo Pessi, Jhulia Fermo, Kauan Rosso, Kauam Sant'ana`,
-            license: {
-                name: 'Licenciado para DAII',
-            },
-            contact: {
-                name: 'Kauan Flavio Rosso'
-            },
-        },
-        servers: [
-            {
-                url: "http://localhost:3000/api/",
-                description: 'Development server',
-            },
-        ],
-    },
-    apis: ["./src/routes/*.js"],
+      license: {
+        name: 'Licenciado para DAII',
+      },
+      contact: {
+        name: 'André F Ruaro'
+      },
+		},
+		servers: [
+			{
+				url: "http://localhost:3000/api/",
+        description: 'Development server',
+			},
+		],
+	},
+	apis: ["./src/routes/*.js"],
 };
 
 const specs = swaggerJsDoc(options);
